@@ -1,0 +1,21 @@
+{
+  "version": 8,
+  "configurePresets": [
+    {
+      "name": "x64_debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "x64_debug",
+      "configurePreset": "x64_debug"
+    }
+  ]
+}
