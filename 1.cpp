@@ -24,8 +24,8 @@ int main(int argc, char* argv[]) {
     sort(leftside.begin(), leftside.end());
     sort(rightside.begin(), rightside.end());
 
-    int64_t res = 0;
-    for (int i = 0; i < leftside.size(); ++i) {
+    int res = 0;
+    for (size_t i = 0; i < leftside.size(); ++i) {
         res += abs(leftside[i] - rightside[i]);
     }
 
@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
 
     res = 0;
     for (size_t i = 0; i < leftside.size(); ++i) {
-        res += leftside[i] * (num_times.contains(leftside[i]) ? num_times[leftside[i]] : 0);
+        res += num_times.contains(leftside[i]) ? leftside[i] * num_times[leftside[i]] : 0;
     }
     cout << res << endl;
 }
