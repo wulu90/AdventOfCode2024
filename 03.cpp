@@ -1,3 +1,5 @@
+#include <cstddef>
+#include <filesystem>
 #include <fstream>
 #include <iterator>
 #include <map>
@@ -8,6 +10,7 @@
 #include <string>
 #include <variant>
 #include <vector>
+
 using namespace std;
 
 void part1() {
@@ -27,7 +30,7 @@ void part1() {
     println("{}", res);
 }
 
-bool check_mul(const map<unsigned long, bool>& indexmap, unsigned long inx) {
+bool check_mul(const map<size_t, bool>& indexmap, size_t inx) {
     auto it = indexmap.upper_bound(inx);
 
     if (it == indexmap.begin()) {
@@ -39,20 +42,20 @@ bool check_mul(const map<unsigned long, bool>& indexmap, unsigned long inx) {
 
 void part2() {
     ifstream input("input/input-3");
-    /*
-    while (getline(input, tmpline)) {
+
+    string line;
+
+    for (string tmpline; getline(input, tmpline);) {
         line += tmpline;
-        }
-    */
-    stringstream iss;
-    iss << input.rdbuf();
-    string line = iss.str();
+    }
+    input.close();
+
     regex pattern(R"(mul\((\d{1,3}),(\d{1,3})\))");
     regex pattern_do(R"(do\(\))");
     regex pattern_dont(R"(don't\(\))");
     int64_t res = 0;
 
-    map<unsigned long, bool> indexmap;
+    map<size_t, bool> indexmap;
 
     for (sregex_iterator it(line.begin(), line.end(), pattern_do); it != sregex_iterator(); ++it) {
         indexmap.insert({it->position(), true});
@@ -74,13 +77,15 @@ void part2() {
 
 void part2_1() {
     ifstream input("input/input-3");
-    stringstream iss;
-    iss << input.rdbuf();
-    string line = iss.str();
-    regex pattern(R"(mul\((\d{1,3}),(\d{1,3})\))");
-    int64_t res = 0;
-    string tmpline;
+    string line;
+    filesystem::path p("input/input-3");
+    auto fsize = filesystem::file_size(p);
+    line.resize(fsize);
+    input.read(&line[0], fsize);
+    input.close();
 
+    regex pattern(R"(mul\((\d{1,3}),(\d{1,3})\))");
+    int res      = 0;
     size_t start = 0;
 
     while (start != string::npos) {
@@ -99,7 +104,11 @@ void part2_1() {
 
 void part2_2() {
     ifstream input("input/input-3");
-    string line{istreambuf_iterator<char>(input), istreambuf_iterator<char>()};
+
+    string line((istreambuf_iterator<char>(input)),
+                istreambuf_iterator<char>());    // to slow https://insanecoding.blogspot.com/2011/11/how-to-read-in-file-in-c.html
+    input.close();
+
     regex pattern(R"(mul\((\d{1,3}),(\d{1,3})\))");
     regex pattern_do(R"(do\(\))");
     regex pattern_dont(R"(don't\(\))");
