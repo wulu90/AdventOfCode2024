@@ -148,9 +148,37 @@ void part2_2() {
     println("{}", res);
 }
 
+void part2_3() {
+    ifstream input("input/input-3");
+    string line;
+    for (string tmpline; getline(input, tmpline);) {
+        line += tmpline;
+    }
+    input.close();
+
+    regex pattern(R"(mul\((\d{1,3}),(\d{1,3})\)|do\(\)|don't\(\))");
+    int res = 0;
+
+    bool enable = true;
+    for (sregex_iterator it(line.begin(), line.end(), pattern); it != sregex_iterator(); ++it) {
+        auto match = *it;
+        if (match.str() == "do()"s) {
+            enable = true;
+        } else if (match.str() == "don't()") {
+            enable = false;
+        } else {
+            if (enable) {
+                res += stoi(match[1].str()) * stoi(match[2].str());
+            }
+        }
+    }
+    println("{}", res);
+}
+
 int main(int argc, char* argv[]) {
     part1();
     part2();
     part2_1();
     part2_2();
+    part2_3();
 }
