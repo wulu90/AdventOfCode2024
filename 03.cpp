@@ -164,7 +164,7 @@ void part2_3() {
         auto match = *it;
         if (match.str() == "do()"s) {
             enable = true;
-        } else if (match.str() == "don't()") {
+        } else if (match.str() == "don't()"s) {
             enable = false;
         } else {
             if (enable) {
@@ -181,4 +181,5 @@ int main(int argc, char* argv[]) {
     part2_1();
     part2_2();
     part2_3();
+    return 0;
 }
