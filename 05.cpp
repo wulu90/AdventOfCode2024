@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <charconv>
 #include <cstdio>
 #include <fstream>
@@ -24,6 +25,15 @@ bool check_order(const map<int, set<int>>& rules_r, const vector<int>& update) {
         }
     }
     return true;
+}
+
+void fix_order(const map<int, set<int>>& rules, vector<int>& update) {
+    sort(update.begin(), update.end(), [&rules](auto num1, auto num2) -> bool {
+        if (rules.contains(num1) && rules.at(num1).contains(num2)) {
+            return true;
+        }
+        return false;
+    });
 }
 
 void part1() {
@@ -53,14 +63,19 @@ void part1() {
         }
     }
 
-    int res = 0;
+    int res  = 0;
+    int res2 = 0;
     for (auto& update : updatevec) {
         if (check_order(rules_r, update)) {
             // println("{}", update[update.size() / 2]);
             res += update[update.size() / 2];
+        } else {
+            fix_order(rules, update);
+            res2 += update[update.size() / 2];
         }
     }
     println("{}", res);
+    println("{}", res2);
 }
 
 int main(int argc, char* argv[]) {
