@@ -10,12 +10,23 @@
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
         "CMAKE_CXX_COMPILER": "clang++"
       }
+    },
+    {
+      "name": "x64_rel",
+      "inherits": "x64_debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
     }
   ],
   "buildPresets": [
     {
       "name": "x64_debug",
       "configurePreset": "x64_debug"
+    },
+    {
+      "name": "x64_rel",
+      "configurePreset": "x64_rel"
     }
   ]
 }

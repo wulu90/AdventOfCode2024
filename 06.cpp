@@ -1,3 +1,4 @@
+#include <chrono>
 #include <cstddef>
 #include <fstream>
 #include <print>
@@ -158,36 +159,45 @@ void part2() {
         }
     }
 
-    int res = 0;
+    auto r  = start_r;
+    auto c  = start_c;
+    auto fa = facing::up;
+    while (!movenext(guardmap, r, c, fa)) {}
+
+    vector<pair<size_t, size_t>> path;
     for (size_t i = 0; i < guardmap.size(); ++i) {
         for (size_t j = 0; j < guardmap.front().size(); ++j) {
-            if (guardmap[i][j] == '#' || (i == start_r && j == start_c)) {
-                continue;
+            if (guardmap[i][j] == 'X') {
+                path.push_back({i, j});
             }
-
-            guardmap[i][j] = '#';
-
-            set<tuple<size_t, size_t, facing>> state{{start_r, start_c, facing::up}};
-            auto r    = start_r;
-            auto c    = start_c;
-            facing fa = facing::up;
-
-            bool loop = false;
-            while (!movenext_2(guardmap, r, c, fa)) {
-                if (!state.contains({r, c, fa})) {
-                    state.insert({r, c, fa});
-                } else {
-                    loop = true;
-                    break;
-                }
-            }
-
-            if (loop) {
-                ++res;
-            }
-
-            guardmap[i][j] = '.';
         }
+    }
+
+    int res = 0;
+
+    for (auto [i, j] : path) {
+        guardmap[i][j] = '#';
+
+        auto r    = start_r;
+        auto c    = start_c;
+        facing fa = facing::up;
+        set<tuple<size_t, size_t, facing>> state{{r, c, fa}};
+
+        bool loop = false;
+        while (!movenext_2(guardmap, r, c, fa)) {
+            if (!state.contains({r, c, fa})) {
+                state.insert({r, c, fa});
+            } else {
+                loop = true;
+                break;
+            }
+        }
+
+        if (loop) {
+            ++res;
+        }
+
+        guardmap[i][j] = '.';
     }
 
     println("{}", res);
