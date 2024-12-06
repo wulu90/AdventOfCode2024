@@ -1,6 +1,8 @@
 #include <cstddef>
 #include <fstream>
+#include <iterator>
 #include <print>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -91,7 +93,62 @@ void part1() {
     println("{}", res);
 }
 
+void part2() {
+    ifstream input("input/input-6");
+
+    vector<string> guardmap;
+
+    for (string line; getline(input, line);) {
+        guardmap.push_back(line);
+    }
+
+    size_t r = 0;
+    size_t c = 0;
+
+    for (; r < guardmap.size(); ++r) {
+        if ((c = guardmap[r].find('^')) != string::npos) {
+            break;
+        }
+    }
+
+    // start position
+    auto start_r = r;
+    auto start_c = c;
+    int res      = 0;
+    for (size_t i = 0; i < guardmap.size(); ++i) {
+        for (size_t j = 0; j < guardmap.front().size(); ++j) {
+            if (i == start_r && j == start_c) {
+                continue;
+            }
+
+            auto guardmaptmp  = guardmap;
+            guardmaptmp[i][j] = '#';
+            set<tuple<size_t, size_t, facing>> state{{start_r, start_c, facing::up}};
+            auto r    = start_r;
+            auto c    = start_c;
+            facing fa = facing::up;
+
+            bool loop = false;
+            while (!movenext(guardmaptmp, r, c, fa)) {
+                if (!state.contains({r, c, fa})) {
+                    state.insert({r, c, fa});
+                } else {
+                    loop = true;
+                    break;
+                }
+            }
+
+            if (loop) {
+                ++res;
+            }
+        }
+    }
+
+    println("{}", res);
+}
+
 int main(int argc, char* argv[]) {
     part1();
+    part2();
     return 0;
 }
