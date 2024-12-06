@@ -161,7 +161,7 @@ void part2() {
     int res = 0;
     for (size_t i = 0; i < guardmap.size(); ++i) {
         for (size_t j = 0; j < guardmap.front().size(); ++j) {
-            if ((i == start_r && j == start_c) || guardmap[i][j] == '#') {
+            if (guardmap[i][j] == '#' || (i == start_r && j == start_c)) {
                 continue;
             }
 
