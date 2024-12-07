@@ -95,7 +95,7 @@ bool produce_2(const equation& equ) {
     return res;
 }
 
-void part1() {
+void solve() {
     ifstream input("input/input-7");
 
     int64_t res  = 0;
@@ -105,15 +105,15 @@ void part1() {
         if (produce(equ)) {
             res += equ.testval;
         }
-        if (produce_2(equ)) {
+        else if (produce_2(equ)) {
             res2 += equ.testval;
         }
     }
     println("{}", res);
-    println("{}", res2);
+    println("{}", res+res2);
 }
 
 int main(int argc, char* argv[]) {
-    part1();
+    solve();
     return 0;
 }
