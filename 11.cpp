@@ -1,7 +1,5 @@
-#include <cmath>
-#include <cstddef>
-#include <cstdint>
 #include <fstream>
+#include <map>
 #include <print>
 #include <queue>
 
@@ -52,7 +50,38 @@ void part1() {
     println("{}", stones.size());
 }
 
+void part2() {
+    fstream input("input/input-11");
+    map<int64_t, int64_t> stonenum_count;
+    for (int64_t n; input >> n;) {
+        stonenum_count[n] += 1;
+    }
+
+    for (int i = 0; i < 75; ++i) {
+        map<int64_t, int64_t> tmpmap;
+        for (auto [n, count] : stonenum_count) {
+            if (n == 0) {
+                tmpmap[1] += count;
+            } else if (digits_count(n) % 2 == 0) {
+                auto [a, b] = splitnum(n);
+                tmpmap[a] += count;
+                tmpmap[b] += count;
+            } else {
+                tmpmap[n * 2024] += count;
+            }
+        }
+        stonenum_count = tmpmap;
+    }
+    println("{}", stonenum_count.size());
+    int64_t res = 0;
+    for (auto [n, count] : stonenum_count) {
+        res += count;
+    }
+    println("{}", res);
+}
+
 int main(int argc, char* argv[]) {
     part1();
+    part2();
     return 0;
 }
