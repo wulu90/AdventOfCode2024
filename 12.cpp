@@ -1,4 +1,3 @@
-#include <cstddef>
 #include <fstream>
 #include <map>
 #include <print>
@@ -11,7 +10,6 @@ using namespace std;
 
 void part1() {
     ifstream input("input/input-12");
-    // ifstream input("input-test");
 
     vector<string> gardenplots;
     for (string line; getline(input, line);) {
@@ -22,7 +20,7 @@ void part1() {
     int colnum = gardenplots.front().size();
     vector<pair<int, int>> dirs{{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 
-    map<int, set<pair<int, int>>> id_coords;
+    map<int, set<pair<int, int>>> id_coords;    // group coord;
     vector<vector<bool>> visited(rownum, vector<bool>(colnum, false));
     int id = -1;
     for (int i = 0; i < rownum; ++i) {
@@ -57,7 +55,8 @@ void part1() {
         }
     }
 
-    int res = 0;
+    int res  = 0;
+    int res2 = 0;
 
     for (auto [_, coords] : id_coords) {
         int area      = coords.size();
@@ -75,7 +74,62 @@ void part1() {
         res += area * perimeter;
     }
 
+    // 1 has side
+    // 0 has neighbour no side
+    // -1 share side with up / left
+    vector<array<int, 4>> sides_count(rownum * colnum);
+
+    for (auto [_, coords] : id_coords) {
+        int area  = coords.size();
+        int index = 0;
+        for (auto [r, c] : coords) {
+            for (int i = 0; i < 4; ++i) {
+                // check facing neighbour exits
+                if (coords.contains({r + dirs[i].first, c + dirs[i].second})) {
+                    sides_count[r * colnum + c][i] = 0;
+                } else {
+                    // check up/left neighbour exits,than check same side status
+                    int up_left = 0;
+
+                    switch (i) {
+                    case 0:
+                    case 2:
+                        up_left = 3;
+                        break;
+                    default:
+                        up_left = 0;
+                        break;
+                    }
+                    int r_upleft = r + dirs[up_left].first;
+                    int c_upleft = c + dirs[up_left].second;
+                    if (coords.contains({r_upleft, c_upleft})) {
+                        if (sides_count[r_upleft * colnum + c_upleft][i] == 1) {
+                            sides_count[r * colnum + c][i] = -1;
+                        } else if (sides_count[r_upleft * colnum + c_upleft][i] == 0) {
+                            sides_count[r * colnum + c][i] = 1;
+                        } else {
+                            sides_count[r * colnum + c][i] = -1;
+                        }
+                    } else {
+                        sides_count[r * colnum + c][i] = 1;
+                    }
+                }
+            }
+        }
+
+        int sides = 0;
+        for (auto [r, c] : coords) {
+            for (int i = 0; i < 4; ++i) {
+                if (sides_count[r * colnum + c][i] == 1) {
+                    ++sides;
+                }
+            }
+        }
+        res2 += area * sides;
+    }
+
     println("{}", res);
+    println("{}", res2);
 }
 
 int main(int argc, char* argv[]) {
