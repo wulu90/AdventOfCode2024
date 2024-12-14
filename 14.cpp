@@ -80,6 +80,26 @@ void part2() {
             xymap.insert({r.px, r.py});
         }
 
+        // find a triangle  fail
+        // find 10 robots in a row
+        bool find = true;
+        for (auto [x, y] : xymap) {
+            find = true;
+            for (int i = 1; i <= 10; ++i) {
+                if (!xymap.contains({x, y + i})) {
+                    find = false;
+                    break;
+                }
+            }
+            if (find) {
+                break;
+            }
+        }
+        if (find) {
+            println("{}", seconds);
+            break;
+        }
+
         // every tile has only one robot, why? see reddit
         if (xymap.size() == robotvec.size()) {
             println("{}", seconds);
