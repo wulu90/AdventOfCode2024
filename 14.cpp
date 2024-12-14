@@ -61,6 +61,16 @@ void part1() {
     println("{}", num_tl * num_tr * num_bl * num_br);
 }
 
+void writebitmap_pbm(const vector<string>& imagevec, int index) {
+    string imagename = format("out/bitmaps/{:05d}.pbm", index);
+    ofstream output(imagename);
+    output << "P1\n101 103\n";
+    for (auto& s : imagevec) {
+        output << s;
+    }
+    output.close();
+}
+
 void part2() {
     ifstream input("input/input-14");
     vector<robot> robotvec;
@@ -71,50 +81,57 @@ void part2() {
     int row     = 103;
     int col     = 101;
     int seconds = 1;
-    while (true) {
+    // while (true) {
+    while (seconds <= row * col) {
         set<pair<int, int>> xymap;
+        vector<string> imagevec(103, string(101, '0'));
         for (auto r : robotvec) {
             r.px = (r.px + r.vx * seconds) % col < 0 ? (r.px + r.vx * seconds) % col + col : (r.px + r.vx * seconds) % col;
             r.py = (r.py + r.vy * seconds) % row < 0 ? (r.py + r.vy * seconds) % row + row : (r.py + r.vy * seconds) % row;
 
             xymap.insert({r.px, r.py});
+            imagevec[r.py][r.px] = '1';
         }
 
+        writebitmap_pbm(imagevec, seconds);
+        ++seconds;
         // find a triangle  fail
         // find 10 robots in a row
-        bool find = true;
-        for (auto [x, y] : xymap) {
-            find = true;
-            for (int i = 1; i <= 10; ++i) {
-                if (!xymap.contains({x, y + i})) {
-                    find = false;
-                    break;
-                }
-            }
-            if (find) {
-                break;
-            }
-        }
-        if (find) {
-            println("{}", seconds);
-            break;
-        }
+        /*
+       bool find = true;
+       for (auto [x, y] : xymap) {
+           find = true;
+           for (int i = 1; i <= 10; ++i) {
+               if (!xymap.contains({x, y + i})) {
+                   find = false;
+                   break;
+               }
+           }
+           if (find) {
+               break;
+           }
+       }
+       if (find) {
+           println("{}", seconds);
+           break;
+       }
 
-        // every tile has only one robot, why? see reddit
-        if (xymap.size() == robotvec.size()) {
-            println("{}", seconds);
-            vector<string> robotout(103, string(101, '.'));
-            for (auto [x, y] : xymap) {
-                robotout[x][y] = '$';
-            }
+       // every tile has only one robot, why? see reddit
+       if (xymap.size() == robotvec.size()) {
+           println("{}", seconds);
+           vector<string> robotout(103, string(101, '.'));
+           for (auto [x, y] : xymap) {
+               robotout[x][y] = '$';
+           }
 
-            for (auto& line : robotout) {
-                println("{}", line);
-            }
+           for (auto& line : robotout) {
+               println("{}", line);
+           }
 
-            break;
-        }
-        ++seconds;
+           break;
+       }
+       ++seconds;
+       */
     }
 }
 
