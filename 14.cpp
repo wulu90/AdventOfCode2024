@@ -1,6 +1,8 @@
 #include <charconv>
+#include <format>
 #include <fstream>
 #include <print>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -59,7 +61,45 @@ void part1() {
     println("{}", num_tl * num_tr * num_bl * num_br);
 }
 
+void part2() {
+    ifstream input("input/input-14");
+    vector<robot> robotvec;
+    for (string line; getline(input, line);) {
+        robotvec.push_back(parse_robot(line));
+    }
+
+    int row     = 103;
+    int col     = 101;
+    int seconds = 1;
+    while (true) {
+        set<pair<int, int>> xymap;
+        for (auto r : robotvec) {
+            r.px = (r.px + r.vx * seconds) % col < 0 ? (r.px + r.vx * seconds) % col + col : (r.px + r.vx * seconds) % col;
+            r.py = (r.py + r.vy * seconds) % row < 0 ? (r.py + r.vy * seconds) % row + row : (r.py + r.vy * seconds) % row;
+
+            xymap.insert({r.px, r.py});
+        }
+
+        // every tile has only one robot, why? see reddit
+        if (xymap.size() == robotvec.size()) {
+            println("{}", seconds);
+            vector<string> robotout(103, string(101, '.'));
+            for (auto [x, y] : xymap) {
+                robotout[x][y] = '$';
+            }
+
+            for (auto& line : robotout) {
+                println("{}", line);
+            }
+
+            break;
+        }
+        ++seconds;
+    }
+}
+
 int main(int argc, char* argv[]) {
     part1();
+    part2();
     return 0;
 }
