@@ -1,8 +1,7 @@
-#include <cstddef>
 #include <fstream>
 #include <functional>
-#include <iterator>
 #include <print>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -121,59 +120,59 @@ void part1() {
     println("{}", gpssum);
 }
 
-void find_square_brackets(vector<string>& warehousemap, size_t& r, size_t c, function<size_t(size_t, size_t)> next_rc,
-                          function<size_t(size_t, size_t)> back_rc) {
-    size_t rr = next_rc(r, 1);
-    // set<pair<size_t, size_t>> boxes_move;
-    vector<vector<size_t>> boxes_move;
-    vector<size_t> nextrowbox;
+void move_up_down(vector<string>& warehousemap, size_t& r, size_t c, function<size_t(size_t, size_t)> next_rc,
+                  function<size_t(size_t, size_t)> back_rc) {
+    vector<set<size_t>> boxes_to_move;
+    set<size_t> next_row_boxes;
     if (warehousemap[next_rc(r, 1)][c] == '[') {
-        nextrowbox.push_back(c);
+        next_row_boxes.insert(c);
     } else {
-        nextrowbox.push_back(c - 1);
+        next_row_boxes.insert(c - 1);
     }
-    boxes_move.push_back(nextrowbox);
+    boxes_to_move.push_back(next_row_boxes);
 
-    auto check = [&warehousemap, &next_rc](const vector<size_t>& curr, size_t rr) -> bool {
+    auto check = [&warehousemap, &next_rc](const set<size_t>& curr_row_boxes, size_t rr) -> bool {
         bool allcanmove = true;
-        for (auto box : curr) {
-            if (warehousemap[next_rc(rr, 1)][box] == '#' || warehousemap[next_rc(rr, 1)][box + 1] == '#') {
+        for (auto box_col : curr_row_boxes) {
+            if (warehousemap[next_rc(rr, 1)][box_col] == '#' || warehousemap[next_rc(rr, 1)][box_col + 1] == '#') {
                 allcanmove = false;
+                break;
             }
         }
         return allcanmove;
     };
     bool canmove = true;
-    while ((canmove = check(*boxes_move.crbegin(), rr))) {
-        nextrowbox.clear();
-        for (auto box : *boxes_move.crbegin()) {
-            if (warehousemap[next_rc(rr, 1)][box] == '[') {
-                nextrowbox.push_back(box);
+    size_t rr    = next_rc(r, 1);
+
+    while ((canmove = check(*boxes_to_move.crbegin(), rr))) {
+        next_row_boxes.clear();
+        for (auto box_col : *boxes_to_move.crbegin()) {
+            if (warehousemap[next_rc(rr, 1)][box_col] == '[') {
+                next_row_boxes.insert(box_col);
             }
-            if (warehousemap[next_rc(rr, 1)][box] == ']') {
-                nextrowbox.push_back(box - 1);
+            if (warehousemap[next_rc(rr, 1)][box_col] == ']') {
+                next_row_boxes.insert(box_col - 1);
             }
 
-            if (warehousemap[next_rc(rr, 1)][box + 1] == '[') {
-                nextrowbox.push_back(box + 1);
+            if (warehousemap[next_rc(rr, 1)][box_col + 1] == '[') {
+                next_row_boxes.insert(box_col + 1);
             }
         }
-        if (!nextrowbox.empty()) {
-            boxes_move.push_back(nextrowbox);
+        if (!next_row_boxes.empty()) {
+            boxes_to_move.push_back(next_row_boxes);
             rr = next_rc(rr, 1);
         } else {
             break;
         }
     }
     if (canmove) {
-        // rr = next_rc(r, 1);
-        reverse(boxes_move.begin(), boxes_move.end());
-        for (auto& boxrow : boxes_move) {
-            for (auto box : boxrow) {
-                warehousemap[rr][box]                 = '.';
-                warehousemap[rr][box + 1]             = '.';
-                warehousemap[next_rc(rr, 1)][box]     = '[';
-                warehousemap[next_rc(rr, 1)][box + 1] = ']';
+        reverse(boxes_to_move.begin(), boxes_to_move.end());
+        for (auto& boxrow : boxes_to_move) {
+            for (auto box_col : boxrow) {
+                warehousemap[rr][box_col]                 = '.';
+                warehousemap[rr][box_col + 1]             = '.';
+                warehousemap[next_rc(rr, 1)][box_col]     = '[';
+                warehousemap[next_rc(rr, 1)][box_col + 1] = ']';
             }
             rr = back_rc(rr, 1);
         }
@@ -222,18 +221,14 @@ void part2() {
     warehousemap[i][j] = '.';
     for (auto c : moves) {
         if (c == '^') {
-            warehousemap[i][j] = '.';
             if (warehousemap[i - 1][j] == '#') {
                 continue;
             } else if (warehousemap[i - 1][j] == '.') {
                 i -= 1;
             } else {
-                find_square_brackets(warehousemap, i, j, minus<size_t>(), plus<size_t>());
+                move_up_down(warehousemap, i, j, minus<size_t>(), plus<size_t>());
             }
-            warehousemap[i][j] = '@';
         } else if (c == '>') {
-            warehousemap[i][j] = '.';
-
             if (warehousemap[i][j + 1] == '#') {
                 continue;
             } else if (warehousemap[i][j + 1] == '.') {
@@ -255,23 +250,16 @@ void part2() {
                     j += 1;
                 }
             }
-            warehousemap[i][j] = '@';
-
         } else if (c == 'v') {
-            warehousemap[i][j] = '.';
-
             if (warehousemap[i + 1][j] == '#') {
                 continue;
             } else if (warehousemap[i + 1][j] == '.') {
                 i += 1;
             } else {
-                find_square_brackets(warehousemap, i, j, plus<size_t>(), minus<size_t>());
+                move_up_down(warehousemap, i, j, plus<size_t>(), minus<size_t>());
             }
-            warehousemap[i][j] = '@';
 
         } else {
-            warehousemap[i][j] = '.';
-
             if (warehousemap[i][j - 1] == '#') {
                 continue;
             } else if (warehousemap[i][j - 1] == '.') {
@@ -293,7 +281,6 @@ void part2() {
                     j -= 1;
                 }
             }
-            warehousemap[i][j] = '@';
         }
     }
     int64_t gpssum = 0;
