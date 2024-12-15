@@ -1,4 +1,5 @@
 #include <charconv>
+#include <cstdint>
 #include <format>
 #include <fstream>
 #include <print>
@@ -71,16 +72,13 @@ void writebitmap_pbm(const vector<string>& imagevec, int index) {
     output.close();
 }
 
-void writebitmap_pbm_binary(const vector<string>& imagevec, int index) {
+void writebitmap_pbm_binary(const vector<uint8_t>& locationbits, int index) {
     string imagename = format("out/bitmaps_binary/{:05d}b.pbm", index);
     ofstream output(imagename);
     output << "P4\n101 103\n";
     uint8_t n = 0;
-    for (auto& bs : imagevec) {
-        for (int i = 0; i < 13; ++i) {
-            from_chars(bs.data() + i * 8, bs.data() + (i + 1) * 8, n, 2);
-            output << n;
-        }
+    for (auto bs : locationbits) {
+        output << bs;
     }
     output.close();
 }
@@ -99,16 +97,19 @@ void part2() {
     while (seconds <= row * col) {
         set<pair<int, int>> xymap;
         vector<string> imagevec(103, string(104, '0'));    // (101/8+1)*8
+        int bytes_per_row = col % 8 == 0 ? col / 8 : col / 8 + 1;
+        vector<uint8_t> locationbits(row * bytes_per_row, 0);
         for (auto r : robotvec) {
             r.px = (r.px + r.vx * seconds) % col < 0 ? (r.px + r.vx * seconds) % col + col : (r.px + r.vx * seconds) % col;
             r.py = (r.py + r.vy * seconds) % row < 0 ? (r.py + r.vy * seconds) % row + row : (r.py + r.vy * seconds) % row;
 
             xymap.insert({r.px, r.py});
             imagevec[r.py][r.px] = '1';
+            locationbits[r.py * bytes_per_row + r.px / 8] |= 1 << (8 - 1 - r.px % 8);
         }
 
         // writebitmap_pbm(imagevec, seconds);
-        writebitmap_pbm_binary(imagevec, seconds);
+        writebitmap_pbm_binary(locationbits, seconds);
         ++seconds;
         // find a triangle  fail
         // find 10 robots in a row
