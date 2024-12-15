@@ -1,6 +1,7 @@
 #include <fstream>
 #include <functional>
 #include <print>
+#include <ranges>
 #include <set>
 #include <string>
 #include <vector>
@@ -166,8 +167,7 @@ void move_up_down(vector<string>& warehousemap, size_t& r, size_t c, function<si
         }
     }
     if (canmove) {
-        reverse(boxes_to_move.begin(), boxes_to_move.end());
-        for (auto& boxrow : boxes_to_move) {
+        for (auto& boxrow : boxes_to_move | views::reverse) {
             for (auto box_col : boxrow) {
                 warehousemap[rr][box_col]                 = '.';
                 warehousemap[rr][box_col + 1]             = '.';
