@@ -19,3 +19,7 @@ add_executable(day13 13.cpp)
 add_executable(day14 14.cpp)
 add_executable(day15 15.cpp)
 add_executable(day16 16.cpp)
+add_executable(day17 17.cpp)
+
+find_package(fmt)
+target_link_libraries(day17 fmt::fmt)
