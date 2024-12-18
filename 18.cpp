@@ -6,7 +6,6 @@
 #include <queue>
 #include <set>
 #include <string>
-#include <utility>
 #include <vector>
 
 using namespace std;
@@ -63,7 +62,63 @@ void part1() {
     }
 }
 
+bool exitable(const vector<pair<int, int>>& fallbytes, size_t endindex, const vector<array<int, 2>>& adjs) {
+    set<pair<int, int>> fallbytesset;
+    fallbytesset.insert(fallbytes.begin(), fallbytes.begin() + endindex);
+
+    set<pair<int, int>> visited;
+    queue<pair<int, int>> q;
+    q.push({0, 0});
+
+    while (!q.empty()) {
+        auto [x, y] = q.front();
+        q.pop();
+
+        for (auto [i, j] : adjs) {
+            if (x + i >= 0 && x + i <= 70 && y + j >= 0 && y + j <= 70 && !fallbytesset.contains({x + i, y + j}) &&
+                !visited.contains({x + i, y + j})) {
+                visited.insert({x + i, y + j});
+                q.push({x + i, y + j});
+            }
+        }
+    }
+
+    return visited.contains({70, 70});
+}
+
+void part2() {
+    ifstream input("input/input-18");
+    string line;
+    vector<pair<int, int>> fallbytes;
+    int n1 = 0;
+    int n2 = 0;
+    while (getline(input, line)) {
+        auto commapos = line.find(',');
+        from_chars(line.data(), line.data() + commapos, n1);
+        from_chars(line.data() + commapos + 1, line.data() + line.length(), n2);
+        fallbytes.push_back({n1, n2});
+    }
+
+    vector<array<int, 2>> adjs{{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
+
+    size_t left  = 0;
+    size_t right = fallbytes.size();
+
+    while (left < right) {
+        auto endindex = (left + right) / 2;
+
+        if (exitable(fallbytes, endindex, adjs)) {
+            left = endindex + 1;
+        } else {
+            right = endindex;
+        }
+    }
+
+    println("{},{}", fallbytes[left - 1].first, fallbytes[left - 1].second);
+}
+
 int main(int argc, char* argv[]) {
     part1();
+    part2();
     return 0;
 }
