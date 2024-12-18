@@ -1,2 +1,2 @@
 CompileFlags:
-  Add: [-std=c++23]
+  Add: [-std=c++23,--cuda-gpu-arch=sm_61]
