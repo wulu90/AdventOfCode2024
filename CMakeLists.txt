@@ -25,3 +25,5 @@ find_package(fmt)
 target_link_libraries(day17 fmt::fmt)
 
 add_executable(day17cu 17.cu)
+
+add_executable(day18 18.cpp)
