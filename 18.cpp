@@ -1,6 +1,5 @@
 #include <charconv>
 #include <fstream>
-#include <functional>
 #include <map>
 #include <print>
 #include <queue>
@@ -115,6 +114,13 @@ void part2() {
     }
 
     println("{},{}", fallbytes[left - 1].first, fallbytes[left - 1].second);
+
+    for (size_t i = 0; i < fallbytes.size(); ++i) {
+        if (!exitable(fallbytes, i, adjs)) {
+            println("{},{}", fallbytes[i - 1].first, fallbytes[i - 1].second);
+            break;
+        }
+    }
 }
 
 int main(int argc, char* argv[]) {
