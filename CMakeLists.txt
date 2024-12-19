@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.18.0)
 project(aoc2024 VERSION 0.1.0 LANGUAGES  CXX CUDA)
 
 set(CMAKE_CXX_STANDARD 23)
+# set(CMAKE_CUDA_STANDARD 20)
+# set(CMAKE_CUDA_ARCHITECTURES 61)
 
 add_executable(day01 01.cpp)
 add_executable(day02 02.cpp)
@@ -27,3 +29,4 @@ target_link_libraries(day17 fmt::fmt)
 add_executable(day17cu 17.cu)
 
 add_executable(day18 18.cpp)
+add_executable(day19 19.cpp)

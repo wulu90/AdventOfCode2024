@@ -36,11 +36,11 @@ int main() {
     unsigned long long* h_result = new unsigned long long(0);
     unsigned long long* d_result;
     cudaMalloc(&d_result, sizeof(unsigned long long));
-
-    for (size_t i = 35184372088832; i < std::numeric_limits<size_t>::max(); i += 1024 * 32) {
+    // 35184372088832
+    for (size_t i = 106904920099226; i < std::numeric_limits<size_t>::max(); i += 1024ul * 2147483647) {
         // for (size_t i = 0; i < 1024 * 32 * 10; i += 1024 * 32) {
         cudaMemset(d_result, 0, sizeof(unsigned long long));
-        check_num_kernel<<<32, 1024>>>(i, d_result);
+        check_num_kernel<<<2147483647, 1024>>>(i, d_result);
         cudaDeviceSynchronize();
         cudaMemcpy(h_result, d_result, sizeof(unsigned long long), cudaMemcpyDeviceToHost);
         if (*h_result != 0) {
