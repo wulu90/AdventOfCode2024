@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <complex>
 #include <fstream>
 #include <map>
 #include <print>
@@ -56,6 +57,43 @@ void make_design_count(const string& design, map<size_t, size_t> index_count, co
     }
 }
 
+size_t make_design_count_1(const string& design, const multimap<char, string>& ch_str_map) {
+    map<size_t, size_t> index_count;
+    index_count.insert({0, 1});
+
+    while (!index_count.empty()) {
+        if (index_count.empty()) {
+            break;
+        }
+
+        if (all_of(index_count.begin(), index_count.end(), [&design](auto it) { return it.first >= design.length(); })) {
+            break;
+        }
+
+        map<size_t, size_t> tmpmap;
+        for (auto [index, count] : index_count) {
+            if (index >= design.length()) {
+                tmpmap[index] += count;
+                continue;
+            }
+
+            auto patts = ch_str_map.equal_range(design[index]);
+            if (patts.first == ch_str_map.end()) {
+                continue;
+            }
+
+            for (auto it = patts.first; it != patts.second; ++it) {
+                if (design.find(it->second, index) == index) {
+                    tmpmap[index + it->second.length()] += count;
+                }
+            }
+        }
+        index_count = std::move(tmpmap);
+    }
+
+    return index_count[design.length()];
+}
+
 void part1() {
     ifstream input("input/input-19");
     string line;
@@ -83,9 +121,10 @@ void part1() {
             ++count;
         }
 
-        size_t n = 0;
-        make_design_count(design, {{0, 1}}, ch_str_map, n);
-        count2 += n;
+        // size_t n = 0;
+        // make_design_count(design, {{0, 1}}, ch_str_map, n);
+        // count2 += n;
+        count2 += make_design_count_1(design, ch_str_map);
     }
 
     println("{}", count);
