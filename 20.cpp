@@ -76,7 +76,7 @@ void part1() {
             auto [j_min, j_max] = minmax(trackcoords[i].second, trackcoords[j].second);
 
             auto cheatsteps = i_max - i_min + j_max - j_min;
-            if (cheatsteps <= 20 && j > i + cheatsteps && j - (i + cheatsteps) >= 100) {
+            if (cheatsteps <= 20 && j >= i + cheatsteps + 100) {
                 ++count2;
                 // save_count[j - (i + cheatsteps)] += 1;
             }
