@@ -31,24 +31,24 @@ void part1() {
     vector<pair<size_t, size_t>> trackcoords;
     map<pair<size_t, size_t>, size_t> coord_idx;
     vector<array<int, 2>> dirs{{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
-    auto curr = start;
-    size_t i  = 0;
+    auto curr   = start;
+    size_t step = 0;
     while (curr != end) {
         trackcoords.push_back(curr);
-        coord_idx.insert({curr, i});
+        coord_idx.insert({curr, step});
 
         for (auto [rd, cd] : dirs) {
             auto r = curr.first + rd;
             auto c = curr.second + cd;
             if (r < rownum && c < colnum && trackmap[r][c] == '.' && !coord_idx.contains({r, c})) {
                 curr = {r, c};
-                ++i;
+                ++step;
                 break;
             }
         }
     }
     trackcoords.push_back(end);
-    coord_idx.insert({end, i});
+    coord_idx.insert({end, step});
 
     int count = 0;
     for (auto [i, j] : trackcoords) {
@@ -68,7 +68,23 @@ void part1() {
         }
     }
 
+    int count2 = 0;
+    // map<size_t, size_t> save_count;
+    for (size_t i = 0; i < trackcoords.size() - 1; ++i) {
+        for (size_t j = i + 1; j < trackcoords.size(); ++j) {
+            auto [i_min, i_max] = minmax(trackcoords[i].first, trackcoords[j].first);
+            auto [j_min, j_max] = minmax(trackcoords[i].second, trackcoords[j].second);
+
+            auto cheatsteps = i_max - i_min + j_max - j_min;
+            if (cheatsteps <= 20 && j > i + cheatsteps && j - (i + cheatsteps) >= 100) {
+                ++count2;
+                // save_count[j - (i + cheatsteps)] += 1;
+            }
+        }
+    }
+
     println("{}", count);
+    println("{}", count2);
 }
 
 int main(int argc, char* argv[]) {
