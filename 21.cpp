@@ -120,7 +120,73 @@ void part1() {
     println("{}", res);
 }
 
+uint64_t calclen(string str, int depth, map<pair<string, int>, uint64_t>& cache, const map<pair<char, char>, vector<string>>& precalc) {
+    uint64_t res = 0;
+
+    if (cache.contains({str, depth})) {
+        return cache[{str, depth}];
+    }
+    char currchar = 'A';
+
+    for (auto c : str) {
+        if (depth == 25) {
+            res += precalc.at({currchar, c}).front().length();
+        } else {
+            uint64_t minlen = UINT64_MAX;
+            for (auto& str : precalc.at({currchar, c})) {
+                minlen = min(minlen, calclen(str, depth + 1, cache, precalc));
+            }
+            res += minlen;
+        }
+        currchar = c;
+    }
+    cache[{str, depth}] = res;
+    return res;
+}
+
+void part2() {
+    ifstream input("input/input-21");
+
+    vector<string> codes;
+    for (string line; getline(input, line);) {
+        codes.push_back(line);
+    }
+
+    vector<pair<char, char>> dirsfromto{{'^', 'A'}, {'^', '<'}, {'^', 'v'}, {'^', '>'}, {'A', '^'}, {'A', '<'}, {'A', 'v'},
+                                        {'A', '>'}, {'<', '^'}, {'<', 'A'}, {'<', 'v'}, {'<', '>'}, {'v', 'A'}, {'v', '^'},
+                                        {'v', '<'}, {'v', '>'}, {'>', 'A'}, {'>', '^'}, {'>', '<'}, {'>', 'v'}};
+
+    map<pair<char, char>, vector<string>> precalc;
+    for (auto& from_to : dirsfromto) {
+        // precalc[from_to]=padpath(from_to.first, from_to.second, dir_keypad, 2, 3, {0,0});
+        auto pathvec = padpath(from_to.first, from_to.second, dir_keypad, 2, 3, {0, 0});
+        for (auto& str : pathvec) {
+            str += 'A';
+        }
+        precalc[from_to] = pathvec;
+    }
+    precalc.insert({{'^', '^'}, {"A"s}});
+    precalc.insert({{'A', 'A'}, {"A"s}});
+    precalc.insert({{'<', '<'}, {"A"s}});
+    precalc.insert({{'v', 'v'}, {"A"s}});
+    precalc.insert({{'>', '>'}, {"A"s}});
+
+    uint64_t res = 0;
+    map<pair<string, int>, uint64_t> cache;
+    for (auto& line : codes) {
+        auto numpadpath = symbolpath(line, num_keypad, 4, 3, {3, 0});
+
+        uint64_t minlen = UINT64_MAX;
+        for (auto& path : numpadpath) {
+            minlen = min(minlen, calclen(path, 1, cache, precalc));
+        }
+        res += stoi(line) * minlen;
+    }
+    println("{}", res);
+}
+
 int main(int argc, char* argv[]) {
     part1();
+    part2();
     return 0;
 }
