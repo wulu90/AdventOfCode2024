@@ -1,0 +1,890 @@
+digraph{
+XOR0 [label = "XOR"]
+y44 -> XOR0
+x44 -> XOR0
+XOR0 -> dfp
+OR0 [label = "OR"]
+shn -> OR0
+nmv -> OR0
+OR0 -> pvg
+AND0 [label = "AND"]
+hgv -> AND0
+ckv -> AND0
+AND0 -> vrf
+AND1 [label = "AND"]
+rpn -> AND1
+vjh -> AND1
+AND1 -> bmn
+AND2 [label = "AND"]
+fkr -> AND2
+pvg -> AND2
+AND2 -> ggp
+AND3 [label = "AND"]
+fhf -> AND3
+trb -> AND3
+AND3 -> vcd
+OR1 [label = "OR"]
+kkq -> OR1
+vvs -> OR1
+OR1 -> trb
+OR2 [label = "OR"]
+dgm -> OR2
+ctf -> OR2
+OR2 -> kvn
+OR3 [label = "OR"]
+phq -> OR3
+kbq -> OR3
+OR3 -> gvs
+OR4 [label = "OR"]
+sqv -> OR4
+wmm -> OR4
+OR4 -> mwn
+AND4 [label = "AND"]
+y08 -> AND4
+x08 -> AND4
+AND4 -> rmf
+OR5 [label = "OR"]
+ktm -> OR5
+fsb -> OR5
+OR5 -> htt
+AND5 [label = "AND"]
+x14 -> AND5
+y14 -> AND5
+AND5 -> ctf
+XOR1 [label = "XOR"]
+y20 -> XOR1
+x20 -> XOR1
+XOR1 -> kgm
+OR6 [label = "OR"]
+vcd -> OR6
+fsh -> OR6
+OR6 -> btb
+XOR2 [label = "XOR"]
+x22 -> XOR2
+y22 -> XOR2
+XOR2 -> dds
+XOR3 [label = "XOR"]
+y17 -> XOR3
+x17 -> XOR3
+XOR3 -> cwj
+XOR4 [label = "XOR"]
+y34 -> XOR4
+x34 -> XOR4
+XOR4 -> mbr
+AND6 [label = "AND"]
+y20 -> AND6
+x20 -> AND6
+AND6 -> vgd
+OR7 [label = "OR"]
+mks -> OR7
+cdk -> OR7
+OR7 -> z45
+AND7 [label = "AND"]
+x33 -> AND7
+y33 -> AND7
+AND7 -> dgb
+XOR5 [label = "XOR"]
+ckv -> XOR5
+hgv -> XOR5
+XOR5 -> z42
+XOR6 [label = "XOR"]
+bmp -> XOR6
+bcb -> XOR6
+XOR6 -> z31
+XOR7 [label = "XOR"]
+mwg -> XOR7
+hrf -> XOR7
+XOR7 -> z39
+XOR8 [label = "XOR"]
+y33 -> XOR8
+x33 -> XOR8
+XOR8 -> kvq
+OR8 [label = "OR"]
+cvj -> OR8
+ftw -> OR8
+OR8 -> rvd
+AND8 [label = "AND"]
+hrf -> AND8
+mwg -> AND8
+AND8 -> jkn
+XOR9 [label = "XOR"]
+y32 -> XOR9
+x32 -> XOR9
+XOR9 -> fhf
+OR9 [label = "OR"]
+rkj -> OR9
+gsd -> OR9
+OR9 -> ppm
+XOR10 [label = "XOR"]
+y40 -> XOR10
+x40 -> XOR10
+XOR10 -> hkg
+XOR11 [label = "XOR"]
+vjh -> XOR11
+rpn -> XOR11
+XOR11 -> z02
+AND9 [label = "AND"]
+kgg -> AND9
+jrg -> AND9
+AND9 -> bwq
+AND10 [label = "AND"]
+y22 -> AND10
+x22 -> AND10
+AND10 -> qnd
+XOR12 [label = "XOR"]
+dnq -> XOR12
+rpv -> XOR12
+XOR12 -> z19
+OR10 [label = "OR"]
+ghk -> OR10
+qhj -> OR10
+OR10 -> crn
+XOR13 [label = "XOR"]
+cwj -> XOR13
+gvs -> XOR13
+XOR13 -> z17
+XOR14 [label = "XOR"]
+x35 -> XOR14
+y35 -> XOR14
+XOR14 -> bhv
+XOR15 [label = "XOR"]
+y39 -> XOR15
+x39 -> XOR15
+XOR15 -> hrf
+XOR16 [label = "XOR"]
+mbr -> XOR16
+wbd -> XOR16
+XOR16 -> z34
+AND11 [label = "AND"]
+kfb -> AND11
+nkh -> AND11
+AND11 -> cvj
+AND12 [label = "AND"]
+pvn -> AND12
+tmp -> AND12
+AND12 -> phq
+XOR17 [label = "XOR"]
+kvn -> XOR17
+prg -> XOR17
+XOR17 -> z15
+OR11 [label = "OR"]
+dtr -> OR11
+jtr -> OR11
+OR11 -> jrg
+OR12 [label = "OR"]
+vsv -> OR12
+jnt -> OR12
+OR12 -> z06
+OR13 [label = "OR"]
+hkj -> OR13
+fjp -> OR13
+OR13 -> ckv
+AND13 [label = "AND"]
+y23 -> AND13
+x23 -> AND13
+AND13 -> ggt
+AND14 [label = "AND"]
+dfp -> AND14
+rvd -> AND14
+AND14 -> mks
+XOR18 [label = "XOR"]
+ftr -> XOR18
+mqt -> XOR18
+XOR18 -> z30
+AND15 [label = "AND"]
+y05 -> AND15
+x05 -> AND15
+AND15 -> ptv
+XOR19 [label = "XOR"]
+y26 -> XOR19
+x26 -> XOR19
+XOR19 -> tbj
+AND16 [label = "AND"]
+y34 -> AND16
+x34 -> AND16
+AND16 -> fhv
+XOR20 [label = "XOR"]
+x28 -> XOR20
+y28 -> XOR20
+XOR20 -> rqt
+XOR21 [label = "XOR"]
+ppm -> XOR21
+dds -> XOR21
+XOR21 -> z22
+AND17 [label = "AND"]
+whw -> AND17
+grc -> AND17
+AND17 -> spr
+XOR22 [label = "XOR"]
+jjs -> XOR22
+cfp -> XOR22
+XOR22 -> z36
+XOR23 [label = "XOR"]
+x19 -> XOR23
+y19 -> XOR23
+XOR23 -> dnq
+OR14 [label = "OR"]
+qjh -> OR14
+qns -> OR14
+OR14 -> msm
+XOR24 [label = "XOR"]
+tmp -> XOR24
+pvn -> XOR24
+XOR24 -> z16
+XOR25 [label = "XOR"]
+x08 -> XOR25
+y08 -> XOR25
+XOR25 -> tpb
+XOR26 [label = "XOR"]
+fkr -> XOR26
+pvg -> XOR26
+XOR26 -> z04
+AND18 [label = "AND"]
+tpb -> AND18
+rgt -> AND18
+AND18 -> wvn
+XOR27 [label = "XOR"]
+x21 -> XOR27
+y21 -> XOR27
+XOR27 -> tvs
+XOR28 [label = "XOR"]
+x03 -> XOR28
+y03 -> XOR28
+XOR28 -> jqs
+XOR29 [label = "XOR"]
+x02 -> XOR29
+y02 -> XOR29
+XOR29 -> vjh
+XOR30 [label = "XOR"]
+x25 -> XOR30
+y25 -> XOR30
+XOR30 -> vgk
+OR15 [label = "OR"]
+hqk -> OR15
+bvg -> OR15
+OR15 -> cfp
+AND19 [label = "AND"]
+x42 -> AND19
+y42 -> AND19
+AND19 -> gwf
+XOR31 [label = "XOR"]
+x30 -> XOR31
+y30 -> XOR31
+XOR31 -> ftr
+XOR32 [label = "XOR"]
+jrg -> XOR32
+kgg -> XOR32
+XOR32 -> z27
+AND20 [label = "AND"]
+x17 -> AND20
+y17 -> AND20
+AND20 -> qch
+AND21 [label = "AND"]
+tvs -> AND21
+dtm -> AND21
+AND21 -> rkj
+XOR33 [label = "XOR"]
+rqt -> XOR33
+cgr -> XOR33
+XOR33 -> z28
+XOR34 [label = "XOR"]
+y41 -> XOR34
+x41 -> XOR34
+XOR34 -> jvt
+XOR35 [label = "XOR"]
+y12 -> XOR35
+x12 -> XOR35
+XOR35 -> sfq
+OR16 [label = "OR"]
+gnf -> OR16
+gjb -> OR16
+OR16 -> rpv
+XOR36 [label = "XOR"]
+y29 -> XOR36
+x29 -> XOR36
+XOR36 -> grc
+XOR37 [label = "XOR"]
+bck -> XOR37
+rdm -> XOR37
+XOR37 -> z01
+AND22 [label = "AND"]
+y26 -> AND22
+x26 -> AND22
+AND22 -> jtr
+XOR38 [label = "XOR"]
+x15 -> XOR38
+y15 -> XOR38
+XOR38 -> prg
+OR17 [label = "OR"]
+hwc -> OR17
+hsn -> OR17
+OR17 -> rnc
+XOR39 [label = "XOR"]
+y36 -> XOR39
+x36 -> XOR39
+XOR39 -> jjs
+OR18 [label = "OR"]
+rgq -> OR18
+rfb -> OR18
+OR18 -> mwg
+XOR40 [label = "XOR"]
+y27 -> XOR40
+x27 -> XOR40
+XOR40 -> kgg
+XOR41 [label = "XOR"]
+sdm -> XOR41
+wfs -> XOR41
+XOR41 -> z38
+OR19 [label = "OR"]
+dgb -> OR19
+cgn -> OR19
+OR19 -> wbd
+OR20 [label = "OR"]
+jrh -> OR20
+rnj -> OR20
+OR20 -> rmd
+OR21 [label = "OR"]
+tcd -> OR21
+qkm -> OR21
+OR21 -> qwd
+XOR42 [label = "XOR"]
+x37 -> XOR42
+y37 -> XOR42
+XOR42 -> hmp
+AND23 [label = "AND"]
+rmd -> AND23
+nmm -> AND23
+AND23 -> z11
+OR22 [label = "OR"]
+cjr -> OR22
+dsn -> OR22
+OR22 -> rpn
+AND24 [label = "AND"]
+x09 -> AND24
+y09 -> AND24
+AND24 -> hwc
+XOR43 [label = "XOR"]
+y14 -> XOR43
+x14 -> XOR43
+XOR43 -> ghf
+AND25 [label = "AND"]
+htt -> AND25
+jvt -> AND25
+AND25 -> hkj
+XOR44 [label = "XOR"]
+x00 -> XOR44
+y00 -> XOR44
+XOR44 -> z00
+XOR45 [label = "XOR"]
+gdb -> XOR45
+tgc -> XOR45
+XOR45 -> z05
+XOR46 [label = "XOR"]
+dhb -> XOR46
+hmp -> XOR46
+XOR46 -> z37
+AND26 [label = "AND"]
+gdb -> AND26
+tgc -> AND26
+AND26 -> pws
+XOR47 [label = "XOR"]
+qwd -> XOR47
+scq -> XOR47
+XOR47 -> z13
+AND27 [label = "AND"]
+sfq -> AND27
+crn -> AND27
+AND27 -> qkm
+AND28 [label = "AND"]
+y21 -> AND28
+x21 -> AND28
+AND28 -> gsd
+AND29 [label = "AND"]
+wvp -> AND29
+pck -> AND29
+AND29 -> hsn
+AND30 [label = "AND"]
+x06 -> AND30
+y06 -> AND30
+AND30 -> jnt
+XOR48 [label = "XOR"]
+btb -> XOR48
+kvq -> XOR48
+XOR48 -> z33
+XOR49 [label = "XOR"]
+x31 -> XOR49
+y31 -> XOR49
+XOR49 -> bcb
+AND31 [label = "AND"]
+y13 -> AND31
+x13 -> AND31
+AND31 -> fpf
+AND32 [label = "AND"]
+kgm -> AND32
+mwn -> AND32
+AND32 -> qfr
+OR23 [label = "OR"]
+cff -> OR23
+fhv -> OR23
+OR23 -> kwj
+OR24 [label = "OR"]
+cmv -> OR24
+qch -> OR24
+OR24 -> kjh
+AND33 [label = "AND"]
+y41 -> AND33
+x41 -> AND33
+AND33 -> fjp
+AND34 [label = "AND"]
+rdm -> AND34
+bck -> AND34
+AND34 -> dsn
+OR25 [label = "OR"]
+rmm -> OR25
+npc -> OR25
+OR25 -> sdm
+AND35 [label = "AND"]
+y03 -> AND35
+x03 -> AND35
+AND35 -> nmv
+XOR50 [label = "XOR"]
+fhf -> XOR50
+trb -> XOR50
+XOR50 -> z32
+AND36 [label = "AND"]
+y40 -> AND36
+x40 -> AND36
+AND36 -> ktm
+AND37 [label = "AND"]
+x11 -> AND37
+y11 -> AND37
+AND37 -> ghk
+OR26 [label = "OR"]
+jdd -> OR26
+spr -> OR26
+OR26 -> mqt
+XOR51 [label = "XOR"]
+dtm -> XOR51
+tvs -> XOR51
+XOR51 -> z21
+XOR52 [label = "XOR"]
+msm -> XOR52
+tbj -> XOR52
+XOR52 -> z26
+AND38 [label = "AND"]
+hkg -> AND38
+mtb -> AND38
+AND38 -> fsb
+OR27 [label = "OR"]
+wpp -> OR27
+fpf -> OR27
+OR27 -> rvj
+XOR53 [label = "XOR"]
+vgk -> XOR53
+sjq -> XOR53
+XOR53 -> z25
+XOR54 [label = "XOR"]
+x01 -> XOR54
+y01 -> XOR54
+XOR54 -> bck
+XOR55 [label = "XOR"]
+nkh -> XOR55
+kfb -> XOR55
+XOR55 -> z43
+OR28 [label = "OR"]
+hfd -> OR28
+bmn -> OR28
+OR28 -> qpp
+XOR56 [label = "XOR"]
+x16 -> XOR56
+y16 -> XOR56
+XOR56 -> pvn
+AND39 [label = "AND"]
+x01 -> AND39
+y01 -> AND39
+AND39 -> cjr
+AND40 [label = "AND"]
+scp -> AND40
+vkd -> AND40
+AND40 -> vsv
+AND41 [label = "AND"]
+pns -> AND41
+fhc -> AND41
+AND41 -> dbr
+AND42 [label = "AND"]
+msm -> AND42
+tbj -> AND42
+AND42 -> dtr
+AND43 [label = "AND"]
+nrv -> AND43
+kjh -> AND43
+AND43 -> gjb
+AND44 [label = "AND"]
+ggt -> AND44
+ftg -> AND44
+AND44 -> pdp
+AND45 [label = "AND"]
+y38 -> AND45
+x38 -> AND45
+AND45 -> rgq
+XOR57 [label = "XOR"]
+rnc -> XOR57
+vms -> XOR57
+XOR57 -> z10
+AND46 [label = "AND"]
+y44 -> AND46
+x44 -> AND46
+AND46 -> cdk
+AND47 [label = "AND"]
+y10 -> AND47
+x10 -> AND47
+AND47 -> rnj
+OR29 [label = "OR"]
+ggp -> OR29
+wgc -> OR29
+OR29 -> gdb
+OR30 [label = "OR"]
+vnb -> OR30
+qnd -> OR30
+OR30 -> ftg
+AND48 [label = "AND"]
+y37 -> AND48
+x37 -> AND48
+AND48 -> npc
+AND49 [label = "AND"]
+dds -> AND49
+ppm -> AND49
+AND49 -> vnb
+AND50 [label = "AND"]
+cfp -> AND50
+jjs -> AND50
+AND50 -> krr
+AND51 [label = "AND"]
+y32 -> AND51
+x32 -> AND51
+AND51 -> fsh
+AND52 [label = "AND"]
+mqt -> AND52
+ftr -> AND52
+AND52 -> qhr
+XOR58 [label = "XOR"]
+y23 -> XOR58
+x23 -> XOR58
+XOR58 -> mwh
+XOR59 [label = "XOR"]
+y18 -> XOR59
+x18 -> XOR59
+XOR59 -> nrv
+AND53 [label = "AND"]
+sjq -> AND53
+vgk -> AND53
+AND53 -> qns
+AND54 [label = "AND"]
+y19 -> AND54
+x19 -> AND54
+AND54 -> sqv
+OR31 [label = "OR"]
+gwf -> OR31
+vrf -> OR31
+OR31 -> nkh
+AND55 [label = "AND"]
+x39 -> AND55
+y39 -> AND55
+AND55 -> prq
+XOR60 [label = "XOR"]
+y09 -> XOR60
+x09 -> XOR60
+XOR60 -> wvp
+XOR61 [label = "XOR"]
+mtb -> XOR61
+hkg -> XOR61
+XOR61 -> z40
+XOR62 [label = "XOR"]
+rmd -> XOR62
+nmm -> XOR62
+XOR62 -> qhj
+XOR63 [label = "XOR"]
+x06 -> XOR63
+y06 -> XOR63
+XOR63 -> vkd
+AND56 [label = "AND"]
+gvs -> AND56
+cwj -> AND56
+AND56 -> cmv
+XOR64 [label = "XOR"]
+nrv -> XOR64
+kjh -> XOR64
+XOR64 -> z18
+AND57 [label = "AND"]
+y29 -> AND57
+x29 -> AND57
+AND57 -> jdd
+XOR65 [label = "XOR"]
+rgt -> XOR65
+tpb -> XOR65
+XOR65 -> z08
+AND58 [label = "AND"]
+qpp -> AND58
+jqs -> AND58
+AND58 -> shn
+XOR66 [label = "XOR"]
+htt -> XOR66
+jvt -> XOR66
+XOR66 -> z41
+XOR67 [label = "XOR"]
+dfp -> XOR67
+rvd -> XOR67
+XOR67 -> z44
+AND59 [label = "AND"]
+y43 -> AND59
+x43 -> AND59
+AND59 -> ftw
+AND60 [label = "AND"]
+y30 -> AND60
+x30 -> AND60
+AND60 -> sjd
+XOR68 [label = "XOR"]
+qrh -> XOR68
+mbg -> XOR68
+XOR68 -> z24
+XOR69 [label = "XOR"]
+pck -> XOR69
+wvp -> XOR69
+XOR69 -> z09
+XOR70 [label = "XOR"]
+grc -> XOR70
+whw -> XOR70
+XOR70 -> z29
+AND61 [label = "AND"]
+x27 -> AND61
+y27 -> AND61
+AND61 -> dbk
+OR32 [label = "OR"]
+mmd -> OR32
+krr -> OR32
+OR32 -> dhb
+XOR71 [label = "XOR"]
+sfq -> XOR71
+crn -> XOR71
+XOR71 -> z12
+AND62 [label = "AND"]
+y04 -> AND62
+x04 -> AND62
+AND62 -> wgc
+XOR72 [label = "XOR"]
+y38 -> XOR72
+x38 -> XOR72
+XOR72 -> wfs
+XOR73 [label = "XOR"]
+y04 -> XOR73
+x04 -> XOR73
+XOR73 -> fkr
+OR33 [label = "OR"]
+sjd -> OR33
+qhr -> OR33
+OR33 -> bmp
+XOR74 [label = "XOR"]
+ggt -> XOR74
+ftg -> XOR74
+XOR74 -> z23
+XOR75 [label = "XOR"]
+x05 -> XOR75
+y05 -> XOR75
+XOR75 -> tgc
+AND63 [label = "AND"]
+y02 -> AND63
+x02 -> AND63
+AND63 -> hfd
+XOR76 [label = "XOR"]
+mwn -> XOR76
+kgm -> XOR76
+XOR76 -> z20
+OR34 [label = "OR"]
+dbr -> OR34
+tsr -> OR34
+OR34 -> rgt
+XOR77 [label = "XOR"]
+x07 -> XOR77
+y07 -> XOR77
+XOR77 -> pns
+OR35 [label = "OR"]
+qfr -> OR35
+vgd -> OR35
+OR35 -> dtm
+AND64 [label = "AND"]
+y18 -> AND64
+x18 -> AND64
+AND64 -> gnf
+AND65 [label = "AND"]
+x15 -> AND65
+y15 -> AND65
+AND65 -> rtq
+AND66 [label = "AND"]
+dnq -> AND66
+rpv -> AND66
+AND66 -> wmm
+OR36 [label = "OR"]
+gnk -> OR36
+rtq -> OR36
+OR36 -> tmp
+AND67 [label = "AND"]
+y35 -> AND67
+x35 -> AND67
+AND67 -> z35
+AND68 [label = "AND"]
+x07 -> AND68
+y07 -> AND68
+AND68 -> tsr
+AND69 [label = "AND"]
+rvj -> AND69
+ghf -> AND69
+AND69 -> dgm
+AND70 [label = "AND"]
+x25 -> AND70
+y25 -> AND70
+AND70 -> qjh
+AND71 [label = "AND"]
+kvq -> AND71
+btb -> AND71
+AND71 -> cgn
+XOR78 [label = "XOR"]
+kwj -> XOR78
+bhv -> XOR78
+XOR78 -> hqk
+OR37 [label = "OR"]
+jkn -> OR37
+prq -> OR37
+OR37 -> mtb
+AND72 [label = "AND"]
+qwd -> AND72
+scq -> AND72
+AND72 -> wpp
+XOR79 [label = "XOR"]
+y24 -> XOR79
+x24 -> XOR79
+XOR79 -> qrh
+AND73 [label = "AND"]
+prg -> AND73
+kvn -> AND73
+AND73 -> gnk
+AND74 [label = "AND"]
+y28 -> AND74
+x28 -> AND74
+AND74 -> cnw
+XOR80 [label = "XOR"]
+x13 -> XOR80
+y13 -> XOR80
+XOR80 -> scq
+OR38 [label = "OR"]
+wrp -> OR38
+dgv -> OR38
+OR38 -> sjq
+XOR81 [label = "XOR"]
+vkd -> XOR81
+scp -> XOR81
+XOR81 -> fhc
+OR39 [label = "OR"]
+mwh -> OR39
+pdp -> OR39
+OR39 -> mbg
+AND75 [label = "AND"]
+y00 -> AND75
+x00 -> AND75
+AND75 -> rdm
+XOR82 [label = "XOR"]
+ghf -> XOR82
+rvj -> XOR82
+XOR82 -> z14
+XOR83 [label = "XOR"]
+y11 -> XOR83
+x11 -> XOR83
+XOR83 -> nmm
+AND76 [label = "AND"]
+bhv -> AND76
+kwj -> AND76
+AND76 -> bvg
+OR40 [label = "OR"]
+dbk -> OR40
+bwq -> OR40
+OR40 -> cgr
+AND77 [label = "AND"]
+bmp -> AND77
+bcb -> AND77
+AND77 -> vvs
+XOR84 [label = "XOR"]
+fhc -> XOR84
+pns -> XOR84
+XOR84 -> z07
+XOR85 [label = "XOR"]
+y10 -> XOR85
+x10 -> XOR85
+XOR85 -> vms
+AND78 [label = "AND"]
+y16 -> AND78
+x16 -> AND78
+AND78 -> kbq
+XOR86 [label = "XOR"]
+y42 -> XOR86
+x42 -> XOR86
+XOR86 -> hgv
+AND79 [label = "AND"]
+rnc -> AND79
+vms -> AND79
+AND79 -> jrh
+AND80 [label = "AND"]
+x36 -> AND80
+y36 -> AND80
+AND80 -> mmd
+AND81 [label = "AND"]
+wfs -> AND81
+sdm -> AND81
+AND81 -> rfb
+XOR87 [label = "XOR"]
+x43 -> XOR87
+y43 -> XOR87
+XOR87 -> kfb
+AND82 [label = "AND"]
+rqt -> AND82
+cgr -> AND82
+AND82 -> mph
+AND83 [label = "AND"]
+y31 -> AND83
+x31 -> AND83
+AND83 -> kkq
+AND84 [label = "AND"]
+x12 -> AND84
+y12 -> AND84
+AND84 -> tcd
+AND85 [label = "AND"]
+x24 -> AND85
+y24 -> AND85
+AND85 -> wrp
+OR41 [label = "OR"]
+ptv -> OR41
+pws -> OR41
+OR41 -> scp
+AND86 [label = "AND"]
+mbg -> AND86
+qrh -> AND86
+AND86 -> dgv
+AND87 [label = "AND"]
+hmp -> AND87
+dhb -> AND87
+AND87 -> rmm
+OR42 [label = "OR"]
+wvn -> OR42
+rmf -> OR42
+OR42 -> pck
+OR43 [label = "OR"]
+cnw -> OR43
+mph -> OR43
+OR43 -> whw
+AND88 [label = "AND"]
+wbd -> AND88
+mbr -> AND88
+AND88 -> cff
+XOR88 [label = "XOR"]
+jqs -> XOR88
+qpp -> XOR88
+XOR88 -> z03
+}

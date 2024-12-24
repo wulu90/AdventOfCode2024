@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <format>
 #include <fstream>
 #include <functional>
 #include <map>
@@ -161,6 +162,70 @@ pair<string, string> full_adder(const string& x, const string& y, const string& 
     }
 }
 
+void graphviz(const vector<gate_wires>& gate_wires_vec) {
+    ofstream output("ripple_carry_adder.dot");
+    output << "digraph{" << "\n";
+
+    int and_count = 0;
+    int or_count  = 0;
+    int xor_count = 0;
+    for (const auto& gw : gate_wires_vec) {
+        string str1, str2;
+        if (gw.gate == gate::AND) {
+            str1 = format("AND{}", and_count);
+            str2 = format("AND{} [label = \"AND\"]", and_count);
+            ++and_count;
+        } else if (gw.gate == gate::OR) {
+            str1 = format("OR{}", or_count);
+            str2 = format("OR{} [label = \"OR\"]", or_count);
+            ++or_count;
+        } else {
+            str1 = format("XOR{}", xor_count);
+            str2 = format("XOR{} [label = \"XOR\"]", xor_count);
+            ++xor_count;
+        }
+        output << str2 << "\n";
+        output << gw.wire_input_0 << " -> " << str1 << "\n";
+        output << gw.wire_input_1 << " -> " << str1 << "\n";
+        output << str1 << " -> " << gw.wire_output << "\n";
+    }
+
+    output << "}" << "\n";
+    output.close();
+}
+
+void mermaid(const vector<gate_wires>& gate_wires_vec) {
+    ofstream output("mermaid.txt");
+    output << "flowchart" << "\n";
+
+    int and_count = 0;
+    int or_count  = 0;
+    int xor_count = 0;
+    for (const auto& gw : gate_wires_vec) {
+        string str1, str2;
+        if (gw.gate == gate::AND) {
+            str1 = format("AND{}", and_count);
+            str2 = format("AND{}[AND]", and_count);
+            ++and_count;
+        } else if (gw.gate == gate::OR) {
+            str1 = format("OR{}", or_count);
+            str2 = format("OR{}[OR]", or_count);
+            ++or_count;
+        } else {
+            str1 = format("XOR{}", xor_count);
+            str2 = format("XOR{}[XOR]", xor_count);
+            ++xor_count;
+        }
+        // output << str2<<"\n";
+        output << gw.wire_input_0 << " --> " << str2 << "\n";
+        output << gw.wire_input_1 << " --> " << str1 << "\n";
+        output << str1 << " --> " << gw.wire_output << "\n";
+    }
+
+    // output << "}"<<"\n";
+    output.close();
+}
+
 void part2() {
     ifstream input{"input/input-24"};
     for (string line; getline(input, line) && !line.empty();) {}
@@ -179,9 +244,10 @@ void part2() {
         gate_wires_vec.push_back(gw);
     }
     input.close();
-
-    // https://en.wikipedia.org/wiki/Adder_(electronics)#Full_adder
-    // https://github.com/xhyrom/aoc/blob/main/2024/24/part_2.py
+    graphviz(gate_wires_vec);
+    // mermaid(gate_wires_vec);
+    //  https://en.wikipedia.org/wiki/Adder_(electronics)#Full_adder
+    //  https://github.com/xhyrom/aoc/blob/main/2024/24/part_2.py
     vector<string> swapoutputs;
     string x, y, c;
     for (int i = 0; i < 45; ++i) {
